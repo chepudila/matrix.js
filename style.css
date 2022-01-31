@@ -1,0 +1,26 @@
+.matrix .matrix-body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: -1;
+    background-color: #000000;
+    color: #0a950e;
+    display: flex;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;   
+}
+
+.matrix .matrix-body .matrix-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.matrix .matrix-body .matrix-col span:last-child {
+    color: #ffffff;
+}
