@@ -95,17 +95,8 @@ export class Matrix {
 
     init() {
         this.matrixArea.style.fontSize = this.options.fontSize;
-
-        this.matrixCols = Array.from({ length: this.matrixColsCount }, () => {
-            if (this.options.chance >= Math.random()) {
-                return new MatrixCol(this.options);
-            } else {
-                return null;
-            }
-        });
-
+        this.matrixCols = Array.from({ length: this.matrixColsCount }, () => null);
         this.resizeMatrix();
-        this.drawMatrix();
     }
 
     nextFrame() {
@@ -122,13 +113,7 @@ export class Matrix {
             colElement.classList.add("matrix-col");
             colElement.style.width = this.options.fontSize;
 
-            if (!col) {
-                if (this.options.chance >= Math.random()) {
-                    this.matrixCols[index] = new MatrixCol(this.options);
-                }
-            }
-
-            if (col) {
+            if (col && col.colStartAtRow < this.matrixRowsCount) {
                 colElement.style.marginTop = parseInt(this.options.fontSize, 10) * col.colStartAtRow + "px";
 
                 for (var i = 0; i < col.colString.length; i++) {
@@ -136,9 +121,7 @@ export class Matrix {
                     charElement.innerText = col.colString.charAt(i);
                     colElement.appendChild(charElement);
                 }
-            }
-
-            if (col && col.colStartAtRow > this.matrixRowsCount) {
+            } else {
                 if (this.options.chance >= Math.random()) {
                     this.matrixCols[index] = new MatrixCol(this.options);
                 }
